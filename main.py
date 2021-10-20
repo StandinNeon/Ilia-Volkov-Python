@@ -1,50 +1,61 @@
-'''2. Написать программу сложения и умножения двух шестнадцатеричных чисел. При этом каждое число представляется как массив, элементы которого это цифры числа. Например, пользователь ввёл A2 и C4F. Сохранить их как [‘A’, ‘2’] и [‘C’, ‘4’, ‘F’] соответственно. Сумма чисел из примера: [‘C’, ‘F’, ‘1’], произведение - [‘7’, ‘C’, ‘9’, ‘F’, ‘E’].'''
+'''1. Подсчитать, сколько было выделено памяти под переменные в ранее разработанных программах в рамках первых трех уроков. Проанализировать результат и определить программы с наиболее эффективным использованием памяти'''
+import sys
+'''
+print('Enter 3 digit number: ')
+put = int(input())
+hundreds = put // 100
+tens = (put // 10) - (hundreds * 10)
+units = put - ((hundreds * 100) + (tens * 10))
+summa=hundreds+tens+units
+product=hundreds*tens*units
+print('Sum of digits:',summa)
+print('Product of digits:',product)
 
-from collections import deque 
+print(sys.getsizeof(put))
+print(sys.getsizeof(hundreds))
+print(sys.getsizeof(tens))
+print(sys.getsizeof(units))
+print(sys.getsizeof(summa))
+print(sys.getsizeof(product))
+print(28*6)
+'''
+# 168 byte
+'''
+chet = 0
+nechet = 0
+num = input('Введите натуральное число: ')
+numbs = [num[i:i+1] for i in range(0, len(num), 1)]
+for i in range(0, len(num), 1):
+  if int(numbs[i]) % 2 != 0:
+    nechet += 1
+  else:
+    chet += 1
+  if int(numbs[i]) == 0:
+    chet += -1
+print("Чётных:", chet, "Нечётных:", nechet)
 
-summa_f = 0
-summa_s = 0
-alphabet = []
-arr_summa = []
-arr_multi = []
-b = 48
-print('Сложение и умножение шестнадцатеричных чисел')
-first = deque(input('Первое число: '))
-second = deque(input('Второе число: '))
-first.reverse()
-second.reverse()
+print(sys.getsizeof(chet))
+print(sys.getsizeof(nechet))
+print(sys.getsizeof(num))
+print(sys.getsizeof(numbs))
+print(sys.getsizeof(i))
+print(28*3+53+88)
+'''
+#225 byte
+'''
+N = 10
+A = [0]*N
+for i in range(2, 100, 1):
+  for t in range (2, 10, 1):
+    if i % t == 0:
+      A[t] += 1
+for n in range(2, 10, 1):
+  print ('Делится на ', n, ': ', A[n], sep ='')
+  
+print(sys.getsizeof(N))
+print(sys.getsizeof(A))
+print(sys.getsizeof(n))
 
-for n in range(65, 71):
-  while b <= 57 and n <= 65:
-    alphabet.append(chr(b))
-    b += 1
-  alphabet.append(chr(n))
-
-if len(first) > len(second):
-  max_len =  len(first) 
-else:
-  max_len = len(second) 
-
-for i in range(0, max_len, 1):
-  summa_f += int(first[i], base = 16) \
-    * 16**first.index(first[i])
-  summa_s += int(second[i], base = 16) \
-    * 16**second.index(second[i])
-summa = summa_f + summa_s 
-summa_del = summa
-
-for sum in range(0, len(str(summa))):
-  summa_ost = summa_del % 16
-  summa_del = summa_del // 16
-  arr_summa.append(alphabet[summa_ost])
-arr_summa.reverse()
-print('Сумма:', arr_summa)
-
-multi = summa_f * summa_s 
-multi_del = multi
-for sum in range(0, len(str(multi))):
-  multi_ost = multi_del % 16
-  multi_del = multi_del // 16
-  arr_multi.append(alphabet[multi_ost])
-arr_multi.reverse()
-print('Произведение:',arr_multi)
+print(28*2+136)
+'''
+#192 byte
