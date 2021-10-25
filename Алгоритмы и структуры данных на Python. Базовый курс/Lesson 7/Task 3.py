@@ -6,9 +6,8 @@ NUM = []
 LEFT = []
 RIGHT = []
 med = 0
-lines = 5
-columns = 5
-
+lines = 3
+columns = (2 * lines) + 1
 if lines > columns:
     lines, columns = columns, lines
 

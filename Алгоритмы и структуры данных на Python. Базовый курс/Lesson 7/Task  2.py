@@ -2,35 +2,37 @@
 import random
 
 
-NUM = []
-LEFT = []
-RIGHT = []
-med = 0
-lines = 5
-columns = 5
-
-if lines > columns:
-    lines, columns = columns, lines
-
-#Генерация массива NUM
-NUM = [[random.randint(1, 10) for j in range(columns)] \
-for i in range(lines)]
-print(NUM)
-
-#Нахождение медианы med
-for row in NUM: 
-  med += sum(row) 
-med = med / (lines * columns)
-
-#Деление массива на две части
-def matrix_spliting(NUM, med):
-    for column in range(len(NUM)):
-        for line in range(len(NUM)):
-            if NUM[column][line] < med:
-                LEFT.append(NUM[column][line])
-            else:
-                RIGHT.append(NUM[column][line])
-    return LEFT, RIGHT
+NUM_ARR = []
 
 
-print('Медиана:', round(med, 1), matrix_spliting(NUM, med))
+for i in range(20):
+  NUM_ARR.append(random.randint(0,50))
+print(NUM_ARR)
+
+def merge_sort(left, right):
+  left_i = 0
+  right_i = 0
+  ARR = []
+  while left_i < len(left) and right_i < len(right):
+    if left[left_i] < right[right_i]:
+      ARR.append(left[left_i])
+      left_i += 1
+    else:
+      ARR.append(right[right_i])
+      right_i += 1
+  if left_i < len(left):
+    ARR += left[left_i:]
+  if right_i < len(right):
+    ARR += right[right_i:]
+  return ARR
+
+def merge(NUM_ARR):
+  if len(NUM_ARR) == 1:
+    return NUM_ARR
+  middle = len(NUM_ARR) // 2
+  left_a = merge(NUM_ARR[:middle])
+  right_a = merge(NUM_ARR[middle:])
+  return merge_sort(left_a, right_a)
+
+print('-------------------------')
+print(merge(NUM_ARR))
