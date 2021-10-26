@@ -9,12 +9,13 @@ for i in range(100):
     NUM.append(random.randint(0, 100))
 #print(NUM)
 #print('------------------------------------------------------------------------')
-
+ 
 def index_sort(NUM):
     j = p = minus = 0
     if min(NUM) < 0:
         minus += abs(min(NUM))
     ARR = [''] * (max(NUM) + 1 + minus)
+    
     for i in range(len(NUM)):
         if ARR[NUM[i] + minus] != NUM[i] + minus:
             ARR[NUM[i] + minus] = NUM[i] + minus
